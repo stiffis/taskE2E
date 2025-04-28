@@ -14,14 +14,12 @@ public class ReviewController {
 
     private final ReviewService reviewService;
 
-    // Crear una revisión
     @PostMapping
     public ResponseEntity<Review> createReview(@RequestBody Review review) {
         Review savedReview = reviewService.saveReview(review);
         return new ResponseEntity<>(savedReview, HttpStatus.CREATED);
     }
 
-    // Eliminar una revisión
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteReview(@PathVariable Long id) {
         reviewService.deleteReview(id);

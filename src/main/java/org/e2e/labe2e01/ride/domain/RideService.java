@@ -17,12 +17,10 @@ public class RideService {
     private final DriverRepository driverRepository;
     private final PassengerRepository passengerRepository;
 
-    // Guardar un nuevo viaje
     public Ride saveRide(Ride ride) {
         return rideRepository.save(ride);
     }
 
-    // Asignar un conductor a un viaje
     public Ride assignDriverToRide(Long rideId, Long driverId) {
         Ride ride = rideRepository.findById(rideId).orElse(null);
         if (ride != null) {
@@ -35,21 +33,17 @@ public class RideService {
         return null;
     }
 
-    // Eliminar un viaje
     public void deleteRide(Long id) {
         rideRepository.deleteById(id);
     }
 
-    // Obtener los viajes de un pasajero con paginación
     public Page<Ride> getRidesByPassenger(Long passengerId, PageRequest pageRequest) {
         return rideRepository.findByPassengerId(passengerId, pageRequest);  // Debe ser implementado en el repositorio
     }
 
-    // Actualizar un viaje
     public Ride updateRide(Long id, Ride rideDetails) {
         Ride ride = rideRepository.findById(id).orElse(null);
         if (ride != null) {
-            // Actualizar detalles del viaje
             ride.setPrice(rideDetails.getPrice());
             ride.setStatus(rideDetails.getStatus());
             ride.setArrivalDate(rideDetails.getArrivalDate());

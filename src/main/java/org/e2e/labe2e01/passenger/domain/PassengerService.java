@@ -11,17 +11,14 @@ import java.util.Optional;
 public class PassengerService {
     private final PassengerRepository passengerRepository;
 
-    // Método para obtener un pasajero por su ID
     public Optional<Passenger> getPassengerById(Long id) {
         return passengerRepository.findById(id);
     }
 
-    // Método para eliminar un pasajero por su ID
     public void deletePassenger(Long id) {
         passengerRepository.deleteById(id);
     }
 
-    // Método para guardar un pasajero
     public void save(Passenger passenger) {
         passengerRepository.save(passenger);
     }

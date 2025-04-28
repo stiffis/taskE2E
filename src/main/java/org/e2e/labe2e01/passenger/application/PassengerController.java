@@ -18,21 +18,18 @@ public class PassengerController {
 
     private final PassengerService passengerService;
 
-    // Obtener un pasajero por ID
     @GetMapping("/{id}")
     public ResponseEntity<Passenger> getPassengerById(@PathVariable Long id) {
         Optional<Passenger> passenger = passengerService.getPassengerById(id);
         return passenger.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    // Eliminar un pasajero por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePassenger(@PathVariable Long id) {
         passengerService.deletePassenger(id);
         return ResponseEntity.noContent().build();
     }
 
-    // Actualizar un pasajero (Descripción de la ubicación)
     @PatchMapping("/{id}")
     public ResponseEntity<Passenger> updatePassenger(@PathVariable Long id, @RequestParam String description, @RequestBody Coordinate coordinate) {
         Optional<Passenger> passenger = passengerService.getPassengerById(id);
@@ -44,7 +41,6 @@ public class PassengerController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    // Obtener las ubicaciones de un pasajero
     @GetMapping("/{id}/places")
     public ResponseEntity<List<Coordinate>> getPassengerPlaces(@PathVariable Long id) {
         Optional<Passenger> passenger = passengerService.getPassengerById(id);
@@ -55,7 +51,6 @@ public class PassengerController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    // Eliminar una ubicación específica de un pasajero
     @DeleteMapping("/{id}/places/{coordinateId}")
     public ResponseEntity<Void> deletePassengerPlace(@PathVariable Long id, @PathVariable Long coordinateId) {
         Optional<Passenger> passenger = passengerService.getPassengerById(id);

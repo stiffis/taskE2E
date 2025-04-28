@@ -13,22 +13,18 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
 
-    // Guardar una nueva revisión
     public Review saveReview(Review review) {
         return reviewRepository.save(review);
     }
 
-    // Obtener todas las revisiones
     public List<Review> getAllReviews() {
         return reviewRepository.findAll();
     }
 
-    // Obtener una revisión por su ID
     public Optional<Review> getReviewById(Long id) {
         return reviewRepository.findById(id);
     }
 
-    // Actualizar una revisión
     public Review updateReview(Long id, Review reviewDetails) {
         Optional<Review> existingReview = reviewRepository.findById(id);
         if (existingReview.isPresent()) {
@@ -44,17 +40,14 @@ public class ReviewService {
         }
     }
 
-    // Eliminar una revisión
     public void deleteReview(Long id) {
         reviewRepository.deleteById(id);
     }
 
-    // Obtener todas las revisiones de un pasajero o conductor
     public List<Review> getReviewsByTarget(Long targetId) {
         return reviewRepository.findByTargetId(targetId);
     }
 
-    // Obtener todas las revisiones de una determinada carrera
     public List<Review> getReviewsByRide(Long rideId) {
         return reviewRepository.findByRideId(rideId);
     }
