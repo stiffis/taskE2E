@@ -1,32 +1,33 @@
 package org.e2e.labe2e01.vehicle.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.NonNull;
 
-@Entity
 @NoArgsConstructor
-@Getter
-@Setter
+@Entity
+@Data
 public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "BIGINT")
+    @Column
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "INTEGER")
-    private int capacity;
+    @Column(nullable = false)
+    private Integer capacity;
 
-    @Column(nullable = false, columnDefinition = "INTEGER")
-    private int fabricationYear;
+    @Column(nullable = false)
+    private Integer fabricationYear;
 
-    @Column(nullable = false, columnDefinition = "VARCHAR(255)")
+    @Column(nullable = false)
     private String brand;
 
-    @Column(nullable = false, columnDefinition = "VARCHAR(255)", unique = true)
+    @Column(nullable = false, unique = true)
     private String licensePlate;
 
-    @Column(nullable = false, columnDefinition = "VARCHAR(255)")
+    @Column(nullable = false)
     private String model;
+
 }

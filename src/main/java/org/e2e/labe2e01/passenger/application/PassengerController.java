@@ -1,9 +1,9 @@
 package org.e2e.labe2e01.passenger.application;
 
 import lombok.RequiredArgsConstructor;
+import org.e2e.labe2e01.coordinate.domain.Coordinate;
 import org.e2e.labe2e01.passenger.domain.Passenger;
 import org.e2e.labe2e01.passenger.domain.PassengerService;
-import org.e2e.labe2e01.coordinate.domain.Coordinate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +19,9 @@ public class PassengerController {
     private final PassengerService passengerService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Passenger> getPassengerById(@PathVariable Long id) {
+    public ResponseEntity<Passenger> getPassengerById(@PathVariable Long id){
         Optional<Passenger> passenger = passengerService.getPassengerById(id);
+
         return passenger.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
@@ -33,8 +34,10 @@ public class PassengerController {
     @PatchMapping("/{id}")
     public ResponseEntity<Passenger> updatePassenger(@PathVariable Long id, @RequestParam String description, @RequestBody Coordinate coordinate) {
         Optional<Passenger> passenger = passengerService.getPassengerById(id);
+
         if (passenger.isPresent()) {
             passenger.get().addPlace(coordinate, description);
+
             passengerService.save(passenger.get());
             return new ResponseEntity<>(passenger.get(), HttpStatus.OK);
         }

@@ -166,8 +166,8 @@ public class RideControllerIntegrationTest {
                 .andExpect(status().isOk());
 
         Ride updatedRide = rideRepository.findById(currentRide.getId()).orElseThrow();
-        updatedRide.setStatus(Status.CANCELED);
-        Assertions.assertEquals(Status.CANCELED, updatedRide.getStatus());
+        updatedRide.setStatus(Status.CANCELLED);
+        Assertions.assertEquals(Status.CANCELLED, updatedRide.getStatus());
     }
 
 

@@ -1,30 +1,26 @@
 package org.e2e.labe2e01.ride.application;
 
+
 import lombok.RequiredArgsConstructor;
 import org.e2e.labe2e01.ride.domain.Ride;
 import org.e2e.labe2e01.ride.domain.RideService;
-import org.e2e.labe2e01.driver.domain.Driver;
-import org.e2e.labe2e01.passenger.domain.Passenger;
+import org.e2e.labe2e01.ride.domain.Status;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
 @RequestMapping("/ride")
+@RestController
 @RequiredArgsConstructor
 public class RideController {
 
-    private final RideService rideService;
+    public final RideService rideService;
 
     @PostMapping
     public ResponseEntity<Ride> createRide(@RequestBody Ride ride) {
-        // Guardar el nuevo viaje a través del servicio
         Ride savedRide = rideService.saveRide(ride);
-
-        // Devolver una respuesta con el código de estado 201 (CREATED)
-        // El cuerpo de la respuesta contiene el objeto Ride recién creado
         return new ResponseEntity<>(savedRide, HttpStatus.CREATED);
     }
 
@@ -52,10 +48,9 @@ public class RideController {
         Page<Ride> rides = rideService.getRidesByPassenger(passengerId, PageRequest.of(page, size));
         return new ResponseEntity<>(rides, HttpStatus.OK);
     }
-
     @PatchMapping("/{id}")
-    public ResponseEntity<Ride> updateRide(@PathVariable Long id, @RequestBody Ride rideDetails) {
-        Ride updatedRide = rideService.updateRide(id, rideDetails);
+    public ResponseEntity<Ride> updateRide(@PathVariable Long id) {
+        Ride updatedRide = rideService.updateRideStatus(id, Status.CANCELLED);
         if (updatedRide != null) {
             return new ResponseEntity<>(updatedRide, HttpStatus.OK);
         }

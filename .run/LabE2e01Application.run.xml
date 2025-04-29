@@ -1,12 +1,16 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="LabE2e01Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <envs>
+      <env name="DB_HOST" value="localhost" />
+      <env name="DB_PORT" value="5432" />
+      <env name="DB_NAME" value="semana5bd" />
+      <env name="DB_USER" value="postgres" />
+      <env name="DB_PASSWORD" value="tre45@15" />
+    </envs>
     <option name="envFilePaths">
-      <option value="$PROJECT_DIR$/.env" />
+      <option value="C" />
     </option>
     <module name="lab-e2e-01" />
-    <selectedOptions>
-      <option name="environmentVariables" />
-    </selectedOptions>
     <option name="SPRING_BOOT_MAIN_CLASS" value="org.e2e.labe2e01.LabE2e01Application" />
     <method v="2">
       <option name="Make" enabled="true" />

@@ -34,3 +34,4 @@ public class Review {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String comment;
 }
+

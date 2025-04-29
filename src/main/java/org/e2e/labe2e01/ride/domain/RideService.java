@@ -1,13 +1,13 @@
 package org.e2e.labe2e01.ride.domain;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
 import org.e2e.labe2e01.driver.domain.Driver;
 import org.e2e.labe2e01.driver.infrastructure.DriverRepository;
 import org.e2e.labe2e01.passenger.infrastructure.PassengerRepository;
 import org.e2e.labe2e01.ride.infrastructure.RideRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -44,6 +44,7 @@ public class RideService {
     public Ride updateRide(Long id, Ride rideDetails) {
         Ride ride = rideRepository.findById(id).orElse(null);
         if (ride != null) {
+            // Actualizar detalles del viaje
             ride.setPrice(rideDetails.getPrice());
             ride.setStatus(rideDetails.getStatus());
             ride.setArrivalDate(rideDetails.getArrivalDate());
@@ -55,6 +56,13 @@ public class RideService {
             ride.setDestinationName(rideDetails.getDestinationName());
             return rideRepository.save(ride);
         }
+
         return null;
+    }
+
+    public Ride updateRideStatus(Long id, Status newStatus) {
+        Ride ride = rideRepository.findById(id).orElseThrow();
+        ride.setStatus(newStatus);
+        return rideRepository.save(ride);
     }
 }

@@ -12,17 +12,12 @@ import org.e2e.labe2e01.vehicle.domain.Vehicle;
 @Getter
 @Setter
 public class Driver extends User {
+
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "SMALLINT")
+    @Column(nullable = false)
     private Category category;
 
     @ManyToOne
     @JoinColumn(name = "vehicle", nullable = false, columnDefinition = "BIGINT")
     private Vehicle vehicle;
-
-    @Column(nullable = false)
-    private double latitude;
-
-    @Column(nullable = false)
-    private double longitude;
 }

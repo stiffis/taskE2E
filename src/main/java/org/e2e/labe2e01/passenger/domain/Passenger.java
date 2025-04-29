@@ -3,6 +3,7 @@ package org.e2e.labe2e01.passenger.domain;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.e2e.labe2e01.coordinate.domain.Coordinate;
 import org.e2e.labe2e01.user.domain.User;
@@ -15,22 +16,22 @@ import java.util.Objects;
 @NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
+@Data
 public class Passenger extends User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "BIGINT")
-    private Long id;
 
-    @OneToMany(mappedBy = "passenger", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "passenger", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER
+    )
     private List<UserLocation> places = new ArrayList<>();
 
     public List<Coordinate> getPlacesList() {
         List<Coordinate> coordinates = new ArrayList<>();
+
         for (UserLocation userLocation : this.places) {
             Coordinate newCoordinate = new Coordinate(userLocation.getCoordinate().getLatitude(), userLocation.getCoordinate().getLongitude());
             newCoordinate.setId(userLocation.getCoordinate().getId());
             coordinates.add(newCoordinate);
         }
+
         return coordinates;
     }
 

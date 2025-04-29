@@ -1,5 +1,10 @@
 package org.e2e.labe2e01.review.application;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.e2e.labe2e01.review.domain.Review;
 import org.e2e.labe2e01.review.domain.ReviewService;
@@ -8,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/review")  // Ruta base para las solicitudes de revisión
+@RequestMapping("/review")
 @RequiredArgsConstructor
 public class ReviewController {
 

@@ -1,8 +1,8 @@
 package org.e2e.labe2e01.review.domain;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.e2e.labe2e01.review.infrastructure.ReviewRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +10,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class ReviewService {
-
     private final ReviewRepository reviewRepository;
 
     public Review saveReview(Review review) {

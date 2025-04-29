@@ -1,43 +1,27 @@
 package org.e2e.labe2e01.user.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.e2e.labe2e01.coordinate.domain.Coordinate;
 
 import java.time.ZonedDateTime;
 
+@Entity
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
 @RequiredArgsConstructor
-@Getter
-@Setter
-@Entity
+@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "BIGINT")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "coordinate", referencedColumnName = "id", nullable = false)
-    private Coordinate coordinate;
+    private Double avg_rating=0.0;
 
-    @Column(nullable = false, length = 255)
-    private String firstName;
-
-    @Column(nullable = false, length = 255)
-    private String lastName;
-
-    @Column(nullable = false, unique = true, length = 255)
-    private String email;
-
-    @Column(nullable = false, unique = true, length = 255)
-    private String password;
-
-    @Column(nullable = false, unique = true, length = 255)
-    private String phoneNumber;
+    private Integer trips=0;
 
     @Column(nullable = false)
     private ZonedDateTime createdAt;
@@ -45,13 +29,27 @@ public class User {
     @Column
     private ZonedDateTime updatedAt;
 
-    @Column(columnDefinition = "DOUBLE DEFAULT 0")
-    private double avgRating;
+    @Column(nullable = false, unique = true, length = 255)
+    private String email;
 
-    @Column(columnDefinition = "INTEGER DEFAULT 0")
-    private Integer trips;
+    @Column(nullable = false, length = 255)
+    private String firstName;
+
+    @Column(nullable = false, length = 255)
+    private String lastName;
+
+    @Column(nullable = false, length = 255)
+    private String password;
+
+    @Column(nullable = false, length = 255)
+    private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+    //Relations
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "coordinate", referencedColumnName = "id")
+    private Coordinate coordinate;
 }

@@ -5,35 +5,36 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.e2e.labe2e01.coordinate.domain.Coordinate;
 import org.e2e.labe2e01.passenger.domain.Passenger;
 
 @NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-@Entity
 @Data
+@Entity
 public class UserLocation {
+    @NonNull
+    private String description;
 
     @EmbeddedId
     private PassengerCoordinateId id;
 
+    @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("passengerId")
-    @JoinColumn(name = "passenger", referencedColumnName = "id", nullable = false)
     private Passenger passenger;
 
+    @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("coordinateId")
-    @JoinColumn(name = "coordinate", referencedColumnName = "id", nullable = false)
     private Coordinate coordinate;
-
-    @Column(nullable = false, columnDefinition = "VARCHAR(255)")
-    private String description;
 
     public UserLocation(Passenger passenger, Coordinate coordinate, String description) {
         this.passenger = passenger;
         this.coordinate = coordinate;
         this.description = description;
-        this.id = new PassengerCoordinateId(passenger.getId(), coordinate.getId());  // Ahora resuelto
+        this.id = new PassengerCoordinateId(passenger.getId(), coordinate.getId());
     }
 }
+

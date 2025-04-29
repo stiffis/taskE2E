@@ -1,9 +1,9 @@
 package org.e2e.labe2e01.ride.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.NonNull;
 import org.e2e.labe2e01.coordinate.domain.Coordinate;
 import org.e2e.labe2e01.driver.domain.Driver;
 import org.e2e.labe2e01.passenger.domain.Passenger;
@@ -12,16 +12,15 @@ import java.time.ZonedDateTime;
 
 @NoArgsConstructor
 @Entity
-@Getter
-@Setter
+@Data
 public class Ride {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "BIGSERIAL")
+    @Column
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "DOUBLE PRECISION")
-    private double price;
+    @Column(nullable = false)
+    private Double price;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -49,9 +48,10 @@ public class Ride {
     @JoinColumn(name = "passenger_id", referencedColumnName = "id", nullable = false)
     private Passenger passenger;
 
-    @Column(nullable = false, columnDefinition = "VARCHAR(255)")
+    @Column(nullable = false)
     private String originName;
 
-    @Column(nullable = false, columnDefinition = "VARCHAR(255)")
+    @Column(nullable = false)
     private String destinationName;
+
 }

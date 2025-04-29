@@ -22,8 +22,11 @@ public class PassengerCoordinateId implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+
         if (o == null || getClass() != o.getClass()) return false;
+
         PassengerCoordinateId that = (PassengerCoordinateId) o;
+
         return Objects.equals(passengerId, that.passengerId) &&
                 Objects.equals(coordinateId, that.coordinateId);
     }

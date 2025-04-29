@@ -6,9 +6,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class PassengerService {
+
     private final PassengerRepository passengerRepository;
 
     public Optional<Passenger> getPassengerById(Long id) {
@@ -22,4 +23,5 @@ public class PassengerService {
     public void save(Passenger passenger) {
         passengerRepository.save(passenger);
     }
+
 }
