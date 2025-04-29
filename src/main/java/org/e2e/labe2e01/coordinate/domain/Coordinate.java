@@ -31,7 +31,7 @@ public class Coordinate {
     @OneToMany(mappedBy = "coordinate", orphanRemoval = true)
     private List<UserLocation> passengers = new ArrayList<>();
 
-    public Coordinate(Double latitude, Double longitude) {
+    public Coordinate(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }

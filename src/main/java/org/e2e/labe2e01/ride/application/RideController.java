@@ -20,7 +20,11 @@ public class RideController {
 
     @PostMapping
     public ResponseEntity<Ride> createRide(@RequestBody Ride ride) {
+        // Guardar el nuevo viaje a través del servicio
         Ride savedRide = rideService.saveRide(ride);
+
+        // Devolver una respuesta con el código de estado 201 (CREATED)
+        // El cuerpo de la respuesta contiene el objeto Ride recién creado
         return new ResponseEntity<>(savedRide, HttpStatus.CREATED);
     }
 

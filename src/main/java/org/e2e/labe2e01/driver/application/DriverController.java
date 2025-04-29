@@ -1,11 +1,13 @@
 package org.e2e.labe2e01.driver.application;
 
-import lombok.RequiredArgsConstructor;
 import org.e2e.labe2e01.driver.domain.Driver;
 import org.e2e.labe2e01.driver.domain.DriverService;
+import org.e2e.labe2e01.vehicle.domain.Vehicle;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Optional;
@@ -52,20 +54,26 @@ public class DriverController {
     }
 
     @PatchMapping("/{id}/location")
-    public ResponseEntity<Driver> updateLocation(@PathVariable Long id, @RequestParam("latitude") double latitude, @RequestParam("longitude") double longitude) {
+    public ResponseEntity<Driver> updateLocation(@PathVariable Long id, @RequestParam("latitude") double latitude,
+            @RequestParam("longitude") double longitude) {
         Optional<Driver> driver = driverService.getDriverById(id);
         if (driver.isPresent()) {
             Driver updatedDriver = driver.get();
+            updatedDriver.setLatitude(latitude);
+            updatedDriver.setLongitude(longitude);
+            driverService.updateDriver(id, updatedDriver);
             return new ResponseEntity<>(updatedDriver, HttpStatus.OK);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
     @PatchMapping("/{id}/car")
-    public ResponseEntity<Driver> updateCar(@PathVariable Long id, @RequestParam("vehicleId") Long vehicleId) {
+    public ResponseEntity<Driver> updateCar(@PathVariable Long id, @RequestBody Vehicle vehicle) {
         Optional<Driver> driver = driverService.getDriverById(id);
         if (driver.isPresent()) {
             Driver updatedDriver = driver.get();
+            updatedDriver.setVehicle(vehicle); // Se asigna el objeto Vehicle completo
+            driverService.updateDriver(id, updatedDriver);
             return new ResponseEntity<>(updatedDriver, HttpStatus.OK);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

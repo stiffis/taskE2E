@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.e2e</groupId>
 	<artifactId>lab-e2e-01</artifactId>
@@ -25,7 +26,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 
 
 		<dependency>
@@ -63,14 +63,14 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.4.0</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.4.0</version>
+			<scope>test</scope>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 
 	<build>
 		<plugins>
@@ -98,7 +98,8 @@
 						<artifactId>maven-compiler-plugin</artifactId>
 						<configuration>
 							<testIncludes>
-								<testInclude>**/DriverControllerIntegrationTest.java</testInclude>
+								<testInclude>
+									**/DriverControllerIntegrationTest.java</testInclude>
 							</testIncludes>
 						</configuration>
 					</plugin>
@@ -115,7 +116,8 @@
 						<artifactId>maven-compiler-plugin</artifactId>
 						<configuration>
 							<testIncludes>
-								<testInclude>**/PassengerControllerIntegrationTest.java</testInclude>
+								<testInclude>
+									**/PassengerControllerIntegrationTest.java</testInclude>
 							</testIncludes>
 						</configuration>
 					</plugin>
@@ -132,7 +134,8 @@
 						<artifactId>maven-compiler-plugin</artifactId>
 						<configuration>
 							<testIncludes>
-								<testInclude>**/ReviewControllerIntegrationTest.java</testInclude>
+								<testInclude>
+									**/ReviewControllerIntegrationTest.java</testInclude>
 							</testIncludes>
 						</configuration>
 					</plugin>
@@ -149,7 +152,8 @@
 						<artifactId>maven-compiler-plugin</artifactId>
 						<configuration>
 							<testIncludes>
-								<testInclude>**/RideControllerIntegrationTest.java</testInclude>
+								<testInclude>
+									**/RideControllerIntegrationTest.java</testInclude>
 							</testIncludes>
 						</configuration>
 					</plugin>
@@ -251,7 +255,8 @@
 						<artifactId>maven-compiler-plugin</artifactId>
 						<configuration>
 							<testIncludes>
-								<testInclude>**/AbstractContainerBaseTest.java</testInclude>
+								<testInclude>
+									**/AbstractContainerBaseTest.java</testInclude>
 							</testIncludes>
 						</configuration>
 					</plugin>
@@ -268,7 +273,8 @@
 						<artifactId>maven-compiler-plugin</artifactId>
 						<configuration>
 							<testIncludes>
-								<testInclude>**/DriverRepositoryTest.java</testInclude>
+								<testInclude>
+									**/DriverRepositoryTest.java</testInclude>
 							</testIncludes>
 						</configuration>
 					</plugin>
@@ -285,7 +291,8 @@
 						<artifactId>maven-compiler-plugin</artifactId>
 						<configuration>
 							<testIncludes>
-								<testInclude>**/PassengerRepositoryTest.java</testInclude>
+								<testInclude>
+									**/PassengerRepositoryTest.java</testInclude>
 							</testIncludes>
 						</configuration>
 					</plugin>
@@ -302,7 +309,8 @@
 						<artifactId>maven-compiler-plugin</artifactId>
 						<configuration>
 							<testIncludes>
-								<testInclude>**/ReviewRepositoryTest.java</testInclude>
+								<testInclude>
+									**/ReviewRepositoryTest.java</testInclude>
 							</testIncludes>
 						</configuration>
 					</plugin>
@@ -319,7 +327,8 @@
 						<artifactId>maven-compiler-plugin</artifactId>
 						<configuration>
 							<testIncludes>
-								<testInclude>**/RideRepositoryTest.java</testInclude>
+								<testInclude>
+									**/RideRepositoryTest.java</testInclude>
 							</testIncludes>
 						</configuration>
 					</plugin>
@@ -336,7 +345,8 @@
 						<artifactId>maven-compiler-plugin</artifactId>
 						<configuration>
 							<testIncludes>
-								<testInclude>**/VehicleRepositoryTest.java</testInclude>
+								<testInclude>
+									**/VehicleRepositoryTest.java</testInclude>
 							</testIncludes>
 						</configuration>
 					</plugin>
