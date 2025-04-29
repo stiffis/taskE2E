@@ -39,12 +39,10 @@ public class DriverController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Driver> updateDriver(@PathVariable Long id, @RequestBody Driver driverDetails) {
-        try {
-            Driver updatedDriver = driverService.updateDriver(id, driverDetails);
-            return new ResponseEntity<>(updatedDriver, HttpStatus.OK);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        Driver updatedDriver = driverService.updateDriver(id, driverDetails);
+        return updatedDriver != null
+            ? new ResponseEntity<>(updatedDriver, HttpStatus.OK)
+            : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
     @DeleteMapping("/{id}")
