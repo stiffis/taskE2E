@@ -19,4 +19,10 @@ public class Driver extends User {
     @ManyToOne
     @JoinColumn(name = "vehicle", nullable = false, columnDefinition = "BIGINT")
     private Vehicle vehicle;
+
+    @Column(nullable = false)
+    private double latitude;
+
+    @Column(nullable = false)
+    private double longitude;
 }

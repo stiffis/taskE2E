@@ -31,6 +31,8 @@ public class DriverService {
             Driver driver = existingDriver.get();
             driver.setCategory(driverDetails.getCategory());
             driver.setVehicle(driverDetails.getVehicle());
+            driver.setLatitude(driverDetails.getLatitude());
+            driver.setLongitude(driverDetails.getLongitude());
             return driverRepository.save(driver);
         } else {
             throw new RuntimeException("Conductor no encontrado");
